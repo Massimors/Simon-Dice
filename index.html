@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simón Dice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Simón Dice</h1>
+    <!--index del menu principal-->
+    <div id="menu">
+        <h2>Registrate!!</h2>
+        <input type="text" id="nombre" placeholder="Nombre">
+        <button id="registrar">Registrar</button>
+    </div>
+    <!--estructura de el juego/tablero-->
+    <div id="juego" class="hidden">
+        <div id="tablero">
+            <div class="color" id="verde"></div>
+            <div class="color" id="rojo"></div>
+            <div class="color" id="amarillo"></div>
+            <div class="color" id="azul"></div>
+        </div>
+    <!--Panel de puntuacion del TOP-->
+        <div id="panel">
+            <div id="puntuacion">Puntuación: 0</div>
+            <button id="iniciar">Iniciar</button>
+            <button id="reiniciar" class="hidden">Reiniciar</button>
+        </div>
+    </div>
+
+    <div id="registro" class="hidden">
+        <h2>TOP GLOBAL</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Puntaje</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

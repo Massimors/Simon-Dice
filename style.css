@@ -1,0 +1,79 @@
+
+
+body {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    background-color:rgb(221, 252, 255);
+}
+
+h1 {
+    margin-top: 190px;
+    font-family:'Courier New', Courier, monospace; 
+    font-size: 60px; 
+    color: #000000; 
+}
+
+.hidden {
+    display: none;
+}
+
+#menu, #juego, #registro {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background:#fcfcfc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#tablero {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    border-radius: 50%;
+    overflow: hidden;
+    gap: 8px;
+    background: linear-gradient(145deg, #1e1e1e, #3a3a3a);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.color {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+.color:active {
+    transform: scale(1.09);
+    opacity: 4.7;
+}
+
+#verde { background-color: rgb(1, 95, 1); }
+#rojo { background-color: rgb(114, 2, 2); }
+#amarillo { background-color: rgb(139, 139, 0); }
+#azul { background-color: rgb(4, 4, 131); }
+
+.activo {
+    opacity: 1;
+    filter: brightness(3.7);
+}
+
+#panel {
+    margin-top: 20px;
+}
+
+#registro table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#registro th, #registro td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
