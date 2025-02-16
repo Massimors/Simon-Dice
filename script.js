@@ -10,6 +10,13 @@ const registro = document.getElementById('registro');
 const tablero = document.getElementById('tablero');
 const puntuacion = document.getElementById('puntuacion');
 
+const sonidos = {
+    verde: new Audio("nota-simon.mp3"),
+    rojo: new Audio("nota-simon.mp3"),
+    amarillo: new Audio("nota-simon.mp3"),
+    azul: new Audio("nota-simon.mp3"),
+}
+
 let secuencia = [];
 let secuenciaUsuario = [];
 let nivel = 0;
@@ -78,6 +85,12 @@ function obtenerColorAleatorio() {
 
 function resaltarColor(color) {
     color.classList.add('activo');
+    
+    if(color.classList.contains('verde')) sonidos.verde.play();
+    if(color.classList.contains('rojo')) sonidos.rojo.play();
+    if(color.classList.contains('amarillo')) sonidos.amarillo.play();
+    if(color.classList.contains('azul')) sonidos.azul.play();
+
     setTimeout(() => {
         color.classList.remove('activo');
     }, 500);
