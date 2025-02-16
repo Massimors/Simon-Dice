@@ -22,9 +22,9 @@ const sonidos = {
     rojo: new Audio("nota-simon.mp3"),
     amarillo: new Audio("nota-simon.mp3"),
     azul: new Audio("nota-simon.mp3"),
-}
+};
 
-
+// Permitir la reproducción en navegadores modernos
 function habilitarSonidos() {
     Object.values(sonidos).forEach(sonido => {
         sonido.play().catch(() => {});
@@ -37,7 +37,6 @@ registrarBtn.addEventListener('click', registrarJugador);
 iniciarBtn.addEventListener('click', iniciarJuego);
 reiniciarBtn.addEventListener("click", reiniciarJuego);
 
-// Guarda el nombre del jugador 
 function registrarJugador() {
     const nombre = nombreInput.value.trim();
     if (nombre === '') {
@@ -50,7 +49,7 @@ function registrarJugador() {
     registro.style.display = 'block';
     actualizarRegistro();
 }
-// Comienza el juego 
+
 function iniciarJuego() {
     if (jugando) return;
     jugando = true;
@@ -60,7 +59,7 @@ function iniciarJuego() {
     reiniciarBtn.classList.remove("hidden");
     mostrarSecuencia();
 }
-// patron del nivel 
+
 function mostrarSecuencia() {
     tablero.classList.add('desactivado');
     secuencia.push(obtenerColorAleatorio());
@@ -73,7 +72,7 @@ function mostrarSecuencia() {
             tablero.classList.remove('desactivado');
             secuenciaUsuario = [];
         }
-    }, 100);
+    }, 1000);
 }
 
 function reiniciarJuego() {
@@ -86,7 +85,7 @@ function reiniciarJuego() {
     menu.classList.remove("hidden");
     reiniciarBtn.classList.add("hidden"); 
 }
-// Generador del nivel 
+
 function obtenerColorAleatorio() {
     const colores = document.querySelectorAll('.color');
     return colores[Math.floor(Math.random() * colores.length)];
@@ -103,7 +102,7 @@ function resaltarColor(color) {
         color.classList.remove("activo");
     }, 500);
 }
-// Verificar si el usuario sigue secuencia  
+
 tablero.addEventListener('click', (e) => {
     if (!jugando || !e.target.classList.contains('color')) return;
     
@@ -122,20 +121,20 @@ tablero.addEventListener('click', (e) => {
     if (secuenciaUsuario.length === secuencia.length) {
         nivel++;
         actualizarPuntuacion();
-        setTimeout(mostrarSecuencia, 100);
+        setTimeout(mostrarSecuencia, 1000);
     }
 });
 
 function compararSecuencia() {
     return secuenciaUsuario.every((color, index) => color === secuencia[index]);
 }
-// Guardar los datos del juego 
+
 function guardarPuntuacion() {
     jugadores.push({ nombre: jugador, puntuacion: nivel - 1 });
     jugadores.sort((a, b) => b.puntuacion - a.puntuacion);
     localStorage.setItem('jugadores', JSON.stringify(jugadores));
 }
-// pasar los datos al registro del top 
+
 function actualizarRegistro() {
     const tabla = document.querySelector('#registro table tbody');
     tabla.innerHTML = '';
@@ -157,4 +156,3 @@ function verificarLogros(nivel) {
     if (nivel === 10) alert("¡Eres un experto!");
     if (nivel === 100) alert("¡WOW terminaste el juego!");
 }
-
