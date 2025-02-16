@@ -10,6 +10,13 @@ const registro = document.getElementById('registro');
 const tablero = document.getElementById('tablero');
 const puntuacion = document.getElementById('puntuacion');
 
+let secuencia = [];
+let secuenciaUsuario = [];
+let nivel = 0;
+let jugando = false;
+let jugador = null;
+let jugadores = JSON.parse(localStorage.getItem('jugadores')) || [];
+
 const sonidos = {
     verde: new Audio("nota-simon.mp3"),
     rojo: new Audio("nota-simon.mp3"),
@@ -17,12 +24,9 @@ const sonidos = {
     azul: new Audio("nota-simon.mp3"),
 }
 
-let secuencia = [];
-let secuenciaUsuario = [];
-let nivel = 0;
-let jugando = false;
-let jugador = null;
-let jugadores = JSON.parse(localStorage.getItem('jugadores')) || [];
+document.body.addEventListener("click", () => {
+    Object.values(sonidos).forEach(sonido => sonido.play().catch(() => {}));
+}, { once: true });
 
 registrarBtn.addEventListener('click', registrarJugador);
 iniciarBtn.addEventListener('click', iniciarJuego);
