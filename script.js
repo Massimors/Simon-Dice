@@ -24,9 +24,14 @@ const sonidos = {
     azul: new Audio("nota-simon.mp3"),
 }
 
-document.body.addEventListener("click", () => {
-    Object.values(sonidos).forEach(sonido => sonido.play().catch(() => {}));
-}, { once: true });
+
+function habilitarSonidos() {
+    Object.values(sonidos).forEach(sonido => {
+        sonido.play().catch(() => {});
+    });
+}
+
+document.body.addEventListener("click", habilitarSonidos, { once: true });
 
 registrarBtn.addEventListener('click', registrarJugador);
 iniciarBtn.addEventListener('click', iniciarJuego);
@@ -68,7 +73,7 @@ function mostrarSecuencia() {
             tablero.classList.remove('desactivado');
             secuenciaUsuario = [];
         }
-    }, 1000);
+    }, 100);
 }
 
 function reiniciarJuego() {
@@ -88,15 +93,14 @@ function obtenerColorAleatorio() {
 }
 
 function resaltarColor(color) {
-    color.classList.add('activo');
-    
-    if(color.classList.contains('verde')) sonidos.verde.play();
-    if(color.classList.contains('rojo')) sonidos.rojo.play();
-    if(color.classList.contains('amarillo')) sonidos.amarillo.play();
-    if(color.classList.contains('azul')) sonidos.azul.play();
-
+    color.classList.add("activo");
+    const colorNombre = color.id;
+    if (sonidos[colorNombre]) {
+        sonidos[colorNombre].currentTime = 0;
+        sonidos[colorNombre].play();
+    }
     setTimeout(() => {
-        color.classList.remove('activo');
+        color.classList.remove("activo");
     }, 500);
 }
 // Verificar si el usuario sigue secuencia  
